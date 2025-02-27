@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/22 15:45:26 by ltomasze          #+#    #+#             */
+/*   Updated: 2025/02/27 19:47:09 by mbany            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
@@ -100,6 +111,22 @@ int ft_check_file(const char *filename)
     return (0);
 }
 
+int new_window()
+{
+    void    *mlx;
+    void    *win;
+
+    mlx = mlx_init();
+    if (!mlx)
+        return (printf("Error: mlx initialization failed\n"), 1);
+    
+    win = mlx_new_window(mlx, 800, 600, "Cub3D");
+    if (!win)
+        return (printf("Error: window creation failed\n"), 1);
+
+    mlx_loop(mlx);
+    return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -109,3 +136,7 @@ int	main(int argc, char **argv)
 		return 1;
 	}
 	if(ft_check_file(argv[1]))
+		return 1;
+    new_window();
+	return 0;
+}
