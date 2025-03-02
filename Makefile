@@ -3,15 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+         #
+#    By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/22 13:48:19 by ltomasze          #+#    #+#              #
-#    Updated: 2025/02/22 15:43:12 by ltomasze         ###   ########.fr        #
+#    Updated: 2025/03/02 14:28:10 by mbany            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
-SOURCES = src/get_next_line.c src/main.c \
+SOURCES = src/get_next_line.c \
+src/main.c \
+src/check_tcm.c \
+src/free.c \
+src/key.c \
+src/map.c \
+src/window.c
 
 OBJECTS = $(SOURCES:%.c=%.o)
 CC = cc
