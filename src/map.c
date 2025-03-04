@@ -5,12 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/02 14:18:22 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/02 14:20:46 by mbany            ###   ########.fr       */
+/*   Created: 2025/03/04 18:19:05 by mbany             #+#    #+#             */
+/*   Updated: 2025/03/04 19:16:45 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void free_map(char **map)
+{
+    if (!map)
+        return;
+    for (int i = 0; map[i] != NULL; i++)
+        free(map[i]);
+    free(map);
+}
 
 char **ft_load_map(const char *filename)
 {
@@ -81,6 +90,15 @@ void draw_map(t_game *game)
                     }
                 }
             }
+        }
+    }
+
+    // Draw the player
+    for (int i = 0; i < tile_size; i++)
+    {
+        for (int j = 0; j < tile_size; j++)
+        {
+            mlx_pixel_put(game->mlx, game->win, game->player_x * tile_size + i, game->player_y * tile_size + j, 0x00FF00); // Zielony kolor
         }
     }
 }
