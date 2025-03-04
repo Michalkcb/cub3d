@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:16:49 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/04 19:19:53 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/04 19:58:29 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ typedef struct s_game
     char **map;
     int player_x;
     int player_y;
+    int player_dir;
     int move_speed;
+    int rotate_speed;
     // Add other game-related variables here
 } t_game;
 
@@ -34,9 +36,12 @@ typedef struct s_game
 #define A_KEY 97  // ASCII code for 'a'
 #define S_KEY 115 // ASCII code for 's'
 #define D_KEY 100 // ASCII code for 'd'
+#define LEFT_ARROW_KEY 65361 // ASCII code for left arrow
+#define RIGHT_ARROW_KEY 65363 // ASCII code for right arrow
 
 #define INITIAL_PLAYER_X 5
 #define INITIAL_PLAYER_Y 5
+#define INITIAL_PLAYER_DIR 0
 
 //check_tcm.c
 char *ft_skip_spaces(char *line);
