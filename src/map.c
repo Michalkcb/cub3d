@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:19:05 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/04 19:16:45 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/04 19:33:19 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char **ft_load_map(const char *filename)
 
     if (!map)
         return (printf("Error: No map found in file\n"), NULL);
-
     map[lines] = NULL;
     return map;
 }
@@ -55,14 +54,11 @@ void draw_map(t_game *game)
 {
     int x, y;
     int tile_size = 32;
-    
+    mlx_clear_window(game->mlx, game->win);
     for (y = 0; game->map[y] != NULL; y++) // Iteracja po liniach mapy
     {
         int x_offset = 0;
-
-        // Obliczamy przesunięcie w poziomie na podstawie liczby spacji na początku wiersza
         while (game->map[y][x_offset] == ' ') {
-
             x_offset++;  // Liczymy, ile spacji jest na początku
         }
 
@@ -70,7 +66,6 @@ void draw_map(t_game *game)
         {
             if (game->map[y][x] == '1') // Ściana
             {
-                // Rysowanie całego kwadratu 32x32 piksele w kolorze czerwonym
                 for (int i = 0; i < tile_size; i++)
                 {
                     for (int j = 0; j < tile_size; j++)
@@ -81,7 +76,6 @@ void draw_map(t_game *game)
             }
             else if (game->map[y][x] == '0' || game->map[y][x] == ' ') // Puste miejsce
             {
-                // Rysowanie całego kwadratu 32x32 piksele w kolorze czarnym
                 for (int i = 0; i < tile_size; i++)
                 {
                     for (int j = 0; j < tile_size; j++)
