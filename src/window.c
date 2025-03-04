@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/02 14:18:13 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/02 14:19:41 by mbany            ###   ########.fr       */
+/*   Created: 2025/03/04 18:19:57 by mbany             #+#    #+#             */
+/*   Updated: 2025/03/04 19:19:26 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ void new_window(t_game *game, const char *map_file)
     if (!game->map)
         exit(printf("Error: failed to load map\n"));
 
+    game->player_x = INITIAL_PLAYER_X; // Set initial player x position
+    game->player_y = INITIAL_PLAYER_Y; // Set initial player y position
+    game->move_speed = 1; // Set player movement speed
+
     draw_map(game);
-    //usunąć leaki
     mlx_key_hook(game->win, handle_key, game);
     mlx_loop(game->mlx);
     free_map(game->map);
