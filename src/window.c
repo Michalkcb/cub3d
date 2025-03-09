@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:19:57 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/04 19:59:15 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/09 13:51:38 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,14 @@ void new_window(t_game *game, const char *map_file)
     if (!game->map)
         exit(printf("Error: failed to load map\n"));
 
-    game->player_x = INITIAL_PLAYER_X; // Set initial player x position
-    game->player_y = INITIAL_PLAYER_Y; // Set initial player y position
-    game->move_speed = 1; // Set player movement speed
-	game->move_speed = 1; // Set player movement speed
-    game->rotate_speed = 15; 
+    game->player_x = INITIAL_PLAYER_X;
+    game->player_y = INITIAL_PLAYER_Y;
+    game->move_speed = 1;
 
-    draw_map(game);
+    draw_3d_view(game);
+    // draw_map(game);
+
     mlx_key_hook(game->win, handle_key, game);
     mlx_loop(game->mlx);
     free_map(game->map);
-
 }
