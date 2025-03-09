@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:21:28 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/04 19:57:28 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/09 13:51:53 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ int handle_key(int key, t_game *game)
         new_x -= game->move_speed;
     else if (key == D_KEY)
         new_x += game->move_speed;
-    else if (key == LEFT_ARROW_KEY)
-        game->player_dir = (game->player_dir - game->rotate_speed) % 360;
-    else if (key == RIGHT_ARROW_KEY)
-        game->player_dir = (game->player_dir + game->rotate_speed) % 360;
 
     // Check for collision with walls
     if (game->map[new_y][new_x] != '1')
@@ -39,6 +35,7 @@ int handle_key(int key, t_game *game)
         game->player_y = new_y;
     }
 
-    draw_map(game); // Redraw the map with the updated player position and direction
+    draw_3d_view(game);
+    // draw_map(game);
     return (0);
 }
