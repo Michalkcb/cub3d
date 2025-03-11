@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:19:57 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/09 13:51:38 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/11 18:45:20 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void new_window(t_game *game, const char *map_file)
     game->player_y = INITIAL_PLAYER_Y;
     game->move_speed = 1;
 
+    load_textures(game);
     draw_3d_view(game);
     // draw_map(game);
 
