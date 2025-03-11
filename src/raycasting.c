@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:40:28 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/09 13:47:25 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/11 19:50:11 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void draw_3d_view(t_game *game)
     int h = 720;  // wysokość okna
     double posX = game->player_x;
     double posY = game->player_y;
-    double dirX = -1, dirY = 0; // kierunek gracza
+    double dirX = 1, dirY = 0; // kierunek gracza
     double planeX = 0, planeY = 0.66; // płaszczyzna kamery
 
     for (int x = 0; x < w; x++)
@@ -91,21 +91,38 @@ void draw_3d_view(t_game *game)
         int drawEnd = lineHeight / 2 + h / 2;
         if (drawEnd >= h) drawEnd = h - 1;
 
-        int color;
+        int texNum;
         if (side == 1)
         {
             if (rayDirY > 0)
-                color = 0xFF0000; // prawa ściana czerwona
+                texNum = 0; // prawa ściana - red_stone
             else
-                color = 0x00FF00; // lewa ściana zielona
+                texNum = 1; // lewa ściana - blue_stone
         }
         else
         {
-            color = 0xFFFFFF; // przednia ściana biała
+            if (rayDirX > 0)
+                texNum = 2; // przednia ściana - grey_stone
+            else
+                texNum = 3; // tylna ściana - color_stone
         }
 
+        double wallX;
+        if (side == 0) wallX = posY + perpWallDist * rayDirY;
+        else           wallX = posX + perpWallDist * rayDirX;
+        wallX -= floor(wallX);
+
+        int texX = (int)(wallX * (double)game->tex_width);
+        if (side == 0 && rayDirX > 0) texX = game->tex_width - texX - 1;
+        if (side == 1 && rayDirY < 0) texX = game->tex_width - texX - 1;
+
+        char *texture_data = mlx_get_data_addr(game->textures[texNum], &game->bpp, &game->size_line, &game->endian);
         for (int y = drawStart; y < drawEnd; y++)
         {
+            int d = y * 256 - h * 128 + lineHeight * 128;
+            int texY = ((d * game->tex_height) / lineHeight) / 256;
+            if (texY < 0 || texY >= game->tex_height) continue; // Sprawdź zakres texY
+            int color = *(int *)(texture_data + (texY * game->size_line + texX * (game->bpp / 8)));
             mlx_pixel_put(game->mlx, game->win, x, y, color);
         }
     }
