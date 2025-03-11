@@ -6,7 +6,7 @@
 #    By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/22 13:48:19 by ltomasze          #+#    #+#              #
-#    Updated: 2025/03/09 12:48:28 by mbany            ###   ########.fr        #
+#    Updated: 2025/03/11 18:54:18 by mbany            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ src/free.c \
 src/window.c \
 src/check_tcm.c \
 src/raycasting.c \
+src/textures.c \
 
 
 OBJECTS = $(SOURCES:%.c=%.o)
