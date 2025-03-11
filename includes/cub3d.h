@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:16:49 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/09 13:13:09 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/11 19:48:22 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,18 @@ typedef struct s_game
     void *mlx;
     void *win;
     char **map;
-    int player_x;
-    int player_y;
-    int move_speed;
-    // Add other game-related variables here
+    double player_x;
+    double player_y;
+    double move_speed;
+    void *textures[4];
+    int tex_width;
+    int tex_height;
+    int bpp;
+    int size_line;
+    int endian;
 } t_game;
+
+
 
 #define ESC_KEY 65307  // ESC
 #define W_KEY 119 // ASCII code for 'w'
@@ -63,3 +70,6 @@ void new_window(t_game *game, const char *map_file);
 
 //raycasting.c
 void draw_3d_view(t_game *game);
+
+//textures.c
+void load_textures(t_game *game);
