@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:40:28 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/11 19:50:11 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/11 20:09:00 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ void draw_3d_view(t_game *game)
             int color = *(int *)(texture_data + (texY * game->size_line + texX * (game->bpp / 8)));
             mlx_pixel_put(game->mlx, game->win, x, y, color);
         }
+        
     }
 }
