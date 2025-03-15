@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:16:49 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/13 20:11:40 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/15 14:54:54 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ typedef struct s_game
     int endian;
 } t_game;
 
-
-
 #define ESC_KEY 65307  // ESC
 #define W_KEY 119 // ASCII code for 'w'
 #define A_KEY 97  // ASCII code for 'a'
 #define S_KEY 115 // ASCII code for 's'
 #define D_KEY 100 // ASCII code for 'd'
 
-#define INITIAL_PLAYER_X 2
+#define INITIAL_PLAYER_X 2.5
 #define INITIAL_PLAYER_Y 6
 
 //check_tcm.c

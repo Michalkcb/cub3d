@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:45:26 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/04 18:21:55 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/15 16:32:54 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void clean_exit(t_game *game)
     }
     exit(0);
 }
-
 
 int	main(int argc, char **argv)
 {

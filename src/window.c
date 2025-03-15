@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:19:57 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/11 18:45:20 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/13 20:09:35 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,5 @@ void new_window(t_game *game, const char *map_file)
     mlx_loop(game->mlx);
     free_map(game->map);
 }
+
+
