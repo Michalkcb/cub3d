@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:21:28 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/16 14:17:38 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/16 16:53:17 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,21 @@ int handle_key(int key, t_game *game)
         new_x -= game->move_speed;
     else if (key == D_KEY)
         new_x += game->move_speed;
+        
+    else if (key == LEFT_ARROW_KEY || key == RIGHT_ARROW_KEY)
+    {
+        double oldDirX = game->dirX;
+        double oldPlaneX = game->planeX;
+        double rotAngle = (key == LEFT_ARROW_KEY ? -1 : 1) * game->rot_speed;
+
+        // Obrót wektora kierunku
+        game->dirX = game->dirX * cos(rotAngle) - game->dirY * sin(rotAngle);
+        game->dirY = oldDirX * sin(rotAngle) + game->dirY * cos(rotAngle);
+
+        // Obrót płaszczyzny kamery
+        game->planeX = game->planeX * cos(rotAngle) - game->planeY * sin(rotAngle);
+        game->planeY = oldPlaneX * sin(rotAngle) + game->planeY * cos(rotAngle);
+    }
 
     // Check for collision with walls
     if (game->map[new_y][new_x] != '1')

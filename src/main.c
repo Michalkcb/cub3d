@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:45:26 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/16 14:24:40 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/16 17:03:10 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int argc, char **argv)
 	}
 	if(ft_check_tcm(argv[1]))
 		return 1;
+	init_game(&game);
     new_window(&game, argv[1]);
 	/*
 	clean_exit(&game);

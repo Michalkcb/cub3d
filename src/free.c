@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:23:41 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/16 14:30:53 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/16 14:55:26 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void clean_exit(t_game *game)
 		mlx_destroy_image(game->mlx, game->textures[1]);
 		mlx_destroy_image(game->mlx, game->textures[2]);
 		mlx_destroy_image(game->mlx, game->textures[3]);
+
         mlx_destroy_display(game->mlx);
         free(game->mlx);
     }
