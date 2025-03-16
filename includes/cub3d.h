@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:16:49 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/16 14:26:42 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/16 17:06:24 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,15 @@ typedef struct s_game
     char **map;
     double player_x;
     double player_y;
+
+    double dirX;
+    double dirY;
+    
+    double planeX;
+    double planeY;
+    
     double move_speed;
+    double rot_speed;
     void *textures[4];
     int tex_width;
     int tex_height;
@@ -41,8 +49,10 @@ typedef struct s_game
 #define S_KEY 115 // ASCII code for 's'
 #define D_KEY 100 // ASCII code for 'd'
 
-#define INITIAL_PLAYER_X 2.5
-#define INITIAL_PLAYER_Y 6
+#define LEFT_ARROW_KEY 65361
+#define RIGHT_ARROW_KEY 65363
+
+
 
 //check_tcm.c
 char *ft_skip_spaces(char *line);
@@ -73,3 +83,6 @@ void load_textures(t_game *game);
 // void free_textures(t_game *game);
 void free_map(char **map);
 void clean_exit(t_game *game);
+
+//init_game.c
+void init_game(t_game *game);
