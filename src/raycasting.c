@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:40:28 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/15 16:24:22 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/16 14:56:53 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,28 @@ void	process_ray(t_game *game, int x, double posX, double posY,
 	render_ray(game, x, posX, posY, rayDirX, rayDirY, mapX, mapY, stepX,
 		stepY, side, h);
 }
-
+void render_floor(t_game *game, int w, int h)
+{
+    int floor_color = 0x2F2F2F; // Ciemnoszary kolor (hex: #2F2F2F)
+    for (int y = h / 2; y < h; y++) // Podłoga
+    {
+        for (int x = 0; x < w; x++)
+        {
+            mlx_pixel_put(game->mlx, game->win, x, y, floor_color);
+        }
+    }
+}
+void render_ceiling(t_game *game, int w, int h)
+{
+    int ceiling_color = 0x87CEEB; // Błękitny kolor (hex: #87CEEB)
+    for (int y = 0; y < h / 2; y++) // Sufit
+    {
+        for (int x = 0; x < w; x++)
+        {
+            mlx_pixel_put(game->mlx, game->win, x, y, ceiling_color);
+        }
+    }
+}
 
 void	draw_3d_view(t_game *game)
 {
@@ -241,6 +262,8 @@ void	draw_3d_view(t_game *game)
 	planeX = 0;
 	planeY = 0.66;
 	x = 0;
+    render_ceiling(game, w, h);
+    render_floor(game, w, h);
 	while (x < w)
 	{
 		process_ray(game, x, posX, posY, dirX, dirY, planeX, planeY, w, h);
