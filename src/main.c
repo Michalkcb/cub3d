@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:45:26 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/15 16:32:54 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/16 14:24:40 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,7 @@ int ft_check_args(int argc, char **argv)
 	return 0;
 }
 
-void clean_exit(t_game *game)
-{
-    if (game->map)
-        free_map(game->map);
-    if (game->win)
-        mlx_destroy_window(game->mlx, game->win);
-    if (game->mlx)
-    {
-        mlx_destroy_display(game->mlx);
-        free(game->mlx);
-    }
-    exit(0);
-}
+
 
 int	main(int argc, char **argv)
 {
@@ -52,6 +40,8 @@ int	main(int argc, char **argv)
 	if(ft_check_tcm(argv[1]))
 		return 1;
     new_window(&game, argv[1]);
-
+	/*
+	clean_exit(&game);
+	*/
 	return 0;
 }

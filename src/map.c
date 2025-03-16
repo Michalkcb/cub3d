@@ -6,20 +6,13 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:19:05 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/04 19:33:19 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/16 14:26:30 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void free_map(char **map)
-{
-    if (!map)
-        return;
-    for (int i = 0; map[i] != NULL; i++)
-        free(map[i]);
-    free(map);
-}
+
 
 char **ft_load_map(const char *filename)
 {
@@ -50,6 +43,7 @@ char **ft_load_map(const char *filename)
     return map;
 }
 
+/*
 void draw_map(t_game *game)
 {
     int x, y;
@@ -96,3 +90,4 @@ void draw_map(t_game *game)
         }
     }
 }
+*/

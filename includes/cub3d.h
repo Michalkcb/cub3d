@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:16:49 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/15 14:54:54 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/16 14:26:42 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,12 @@ int ft_is_color_line(char *line);
 int ft_is_map_line(char *line);
 int ft_check_tcm(const char *filename);
 
-//free.c
 //main.c
-void clean_exit(t_game *game);
 
 //kay.c
 int handle_key(int key, t_game *game);
 
 //map.c
-void free_map(char **map);
 char **ft_load_map(const char *filename);
 void draw_map(t_game *game);
 
@@ -71,3 +68,8 @@ void draw_3d_view(t_game *game);
 
 //textures.c
 void load_textures(t_game *game);
+
+//free.c
+// void free_textures(t_game *game);
+void free_map(char **map);
+void clean_exit(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:42:26 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/11 20:08:16 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/16 14:26:18 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,4 @@ void load_textures(t_game *game)
         printf("Error: failed to load texture4\n"), exit(1);
 	printf("Texture width: %d, height: %d\n", game->tex_width, game->tex_height);
 }
+
