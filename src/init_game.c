@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:11:49 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/18 19:00:03 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/18 20:18:39 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void init_game(t_game *game)
     game->planeX = 0; // Płaszczyzna kamery (np. skierowana na północ)
     game->planeY = 0.66;
     game->move_speed = 0.3; // Prędkość ruchu
-    game->rot_speed = 0.03; // Prędkość obrotu
+    game->rot_speed = 0.1; // Prędkość obrotu
 }

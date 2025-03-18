@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:21:28 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/18 19:02:06 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/18 20:17:56 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int handle_key(int key, t_game *game)
 
     if (key == ESC_KEY)
         clean_exit(game);
-    else if (key == S_KEY)
+    else if (key == W_KEY)
     {
         new_x += game->dirX * game->move_speed;
         new_y += game->dirY * game->move_speed;
     }
-    else if (key == W_KEY)
+    else if (key == S_KEY)
     {
         new_x -= game->dirX * game->move_speed;
         new_y -= game->dirY * game->move_speed;
@@ -44,7 +44,7 @@ int handle_key(int key, t_game *game)
     {
         double oldDirX = game->dirX;
         double oldPlaneX = game->planeX;
-        double rotAngle = (key == LEFT_ARROW_KEY ? -1 : 1) * game->rot_speed;
+        double rotAngle = (key == RIGHT_ARROW_KEY ? -1 : 1) * game->rot_speed;
 
         // Obrót wektora kierunku
         game->dirX = game->dirX * cos(rotAngle) - game->dirY * sin(rotAngle);

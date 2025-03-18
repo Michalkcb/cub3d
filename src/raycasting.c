@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:40:28 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/18 18:41:37 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/18 19:51:57 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,32 +243,23 @@ void render_ceiling(t_game *game, int w, int h)
 
 void	draw_3d_view(t_game *game)
 {
-	int		w;
-	int		h;
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-	int		x;
+    int w = 1440;
+    int h = 720;
+    double posX = game->player_x;
+    double posY = game->player_y;
+    double dirX = game->dirX; // Użyj wartości z game
+    double dirY = game->dirY; // Użyj wartości z game
+    double planeX = game->planeX; // Użyj wartości z game
+    double planeY = game->planeY; // Użyj wartości z game
+    int x = 0;
 
-	w = 1440;
-	h = 720;
-	posX = game->player_x;
-	posY = game->player_y;
-	dirX = 1;
-	dirY = 0;
-	planeX = 0;
-	planeY = 0.66;
-	x = 0;
     render_ceiling(game, w, h);
     render_floor(game, w, h);
-	while (x < w)
-	{
-		process_ray(game, x, posX, posY, dirX, dirY, planeX, planeY, w, h);
-		x++;
-	}
+    while (x < w)
+    {
+        process_ray(game, x, posX, posY, dirX, dirY, planeX, planeY, w, h);
+        x++;
+    }
 }
 
 
