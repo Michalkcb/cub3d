@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:21:28 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/16 16:53:17 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/18 19:02:06 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,31 @@
 
 int handle_key(int key, t_game *game)
 {
-    int new_x = game->player_x;
-    int new_y = game->player_y;
+    double new_x = game->player_x;
+    double new_y = game->player_y;
 
     if (key == ESC_KEY)
         clean_exit(game);
-    else if (key == W_KEY)
-        new_y -= game->move_speed;
     else if (key == S_KEY)
-        new_y += game->move_speed;
-    else if (key == A_KEY)
-        new_x -= game->move_speed;
+    {
+        new_x += game->dirX * game->move_speed;
+        new_y += game->dirY * game->move_speed;
+    }
+    else if (key == W_KEY)
+    {
+        new_x -= game->dirX * game->move_speed;
+        new_y -= game->dirY * game->move_speed;
+    }
     else if (key == D_KEY)
-        new_x += game->move_speed;
+    {
+        new_x += game->planeX * game->move_speed;
+        new_y += game->planeY * game->move_speed;
+    }
+    else if (key == A_KEY)
+    {
+        new_x -= game->planeX * game->move_speed;
+        new_y -= game->planeY * game->move_speed;
+    }
         
     else if (key == LEFT_ARROW_KEY || key == RIGHT_ARROW_KEY)
     {
@@ -44,7 +56,7 @@ int handle_key(int key, t_game *game)
     }
 
     // Check for collision with walls
-    if (game->map[new_y][new_x] != '1')
+    if (game->map[(int)new_y][(int)new_x] != '1')
     {
         game->player_x = new_x;
         game->player_y = new_y;
