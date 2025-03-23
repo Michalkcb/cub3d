@@ -6,37 +6,94 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:19:57 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/16 17:07:50 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/23 14:24:39 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void new_window(t_game *game, const char *map_file)
+bool	touch(float px, float py, t_game *game)
 {
-    game->mlx = mlx_init();
-    if (!game->mlx)
-        exit(printf("Error: mlx init failed\n"));
+	int	x1;
+	int	y1;
+	int	mapx;
+	int	mapy;
 
-    game->win = mlx_new_window(game->mlx, 1440, 720, "Cub3D");
-    if (!game->win)
-        exit(printf("Error: window creation failed\n"));
-
-    game->map = ft_load_map(map_file);
-    if (!game->map)
-        exit(printf("Error: failed to load map\n"));
-
-    // game->player_x = INITIAL_PLAYER_X;
-    // game->player_y = INITIAL_PLAYER_Y;
-    // game->move_speed = 1;
-    init_game(game);
-
-    load_textures(game);
-    draw_3d_view(game);
-    // draw_map(game);
-
-    mlx_key_hook(game->win, handle_key, game);
-    mlx_loop(game->mlx);  
+	x1 = (int)((px + COLLISION_RADIUS) / BLOCK);
+	y1 = (int)((py + COLLISION_RADIUS) / BLOCK);
+	mapy = (int)((py - COLLISION_RADIUS) / BLOCK);
+	while (mapy <= y1)
+	{
+		mapx = (int)((px - COLLISION_RADIUS) / BLOCK);
+		while (mapx <= x1)
+		{
+			if (mapy < 0 || game->map[mapy] == NULL || mapx < 0
+				|| game->map[mapy][mapx] == '\0'
+				|| game->map[mapy][mapx] == '1')
+				return (true);
+			mapx++;
+		}
+		mapy++;
+	}
+	return (false);
 }
+
+void	put_pixel(int x, int y, int color, t_game *game)
+{
+	int	index;
+
+	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
+		return ;
+	index = y * game->line_size + x * game->bpp / 8;
+	game->data[index] = color & 0xFF;
+	game->data[index + 1] = (color >> 8) & 0xFF;
+	game->data[index + 2] = (color >> 16) & 0xFF;
+}
+
+void	clear_image(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			put_pixel(x, y, 0, game);
+			x++;
+		}
+		y++;
+	}
+}
+void	draw_floor_ceiling(t_game *game)
+{
+	int	x;
+	int	y;	
+
+	y = 0;
+	while (y < HEIGHT / 2)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			put_pixel(x, y, CELING, game);
+			x++;
+		}
+		y++;
+	}
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			put_pixel(x, y, FLOOR, game);
+			x++;
+		}
+		y++;
+	}
+}
+
 
 

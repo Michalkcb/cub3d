@@ -6,37 +6,50 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:23:41 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/16 14:55:26 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/23 14:47:07 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void free_map(char **map)
+void	free_texture(t_game *game, t_tex *texture)
 {
-    if (!map)
-        return;
-    for (int i = 0; map[i] != NULL; i++)
-        free(map[i]);
-    free(map);
+	if (texture->img)
+		mlx_destroy_image(game->mlx, texture->img);
 }
-void clean_exit(t_game *game)
+
+void	free_texture_paths(t_game *game)
 {
+	if (game->w_tex_path)
+		free(game->w_tex_path);
+	if (game->n_tex_path)
+		free(game->n_tex_path);
+	if (game->e_tex_path)
+		free(game->e_tex_path);
+	if (game->s_tex_path)
+		free(game->s_tex_path);
+}
 
-    if (game->map)
-        free_map(game->map);
-    if (game->win)
-        mlx_destroy_window(game->mlx, game->win);
-    if (game->mlx)
-    {
-		mlx_destroy_image(game->mlx, game->textures[0]);
-		mlx_destroy_image(game->mlx, game->textures[1]);
-		mlx_destroy_image(game->mlx, game->textures[2]);
-		mlx_destroy_image(game->mlx, game->textures[3]);
+void	free_map(char **map)
+{
+	int	i;
 
-        mlx_destroy_display(game->mlx);
-        free(game->mlx);
-    }
-    exit(0);
+	i = 0;
+	if (!map)
+		return ;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+void	free_all_textures(t_game *game)
+{
+	free_texture(game, &game->n_tex);
+	free_texture(game, &game->s_tex);
+	free_texture(game, &game->w_tex);
+	free_texture(game, &game->e_tex);
 }
 

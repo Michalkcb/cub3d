@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:19:05 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/16 14:26:30 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/23 12:50:42 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,51 +43,51 @@ char **ft_load_map(const char *filename)
     return map;
 }
 
-/*
+
 void draw_map(t_game *game)
 {
     int x, y;
-    int tile_size = 32;
-    mlx_clear_window(game->mlx, game->win);
-    for (y = 0; game->map[y] != NULL; y++) // Iteracja po liniach mapy
-    {
-        int x_offset = 0;
-        while (game->map[y][x_offset] == ' ') {
-            x_offset++;  // Liczymy, ile spacji jest na początku
-        }
+    int tile_size = BLOCK / 8; // Rozmiar kafelka na minimapie (1/8 rozmiaru bloku)
+    int offset_x = 10;        // Przesunięcie minimapy od lewej krawędzi
+    int offset_y = 10;        // Przesunięcie minimapy od górnej krawędzi
 
-        for (x = 0; game->map[y][x] != '\0'; x++) // Iteracja po znakach w linii
+    // Iteracja po mapie
+    for (y = 0; game->map[y] != NULL; y++)
+    {
+        for (x = 0; game->map[y][x] != '\0'; x++)
         {
+            int color = 0x000000; // Domyślny kolor (czarny)
+
             if (game->map[y][x] == '1') // Ściana
+                color = 0xFF0000; // Czerwony
+            else if (game->map[y][x] == '0') // Puste miejsce
+                color = 0x2F2F2F; // Szary
+
+            // Rysowanie kafelka na obrazie
+            for (int i = 0; i < tile_size; i++)
             {
-                for (int i = 0; i < tile_size; i++)
+                for (int j = 0; j < tile_size; j++)
                 {
-                    for (int j = 0; j < tile_size; j++)
-                    {
-                        mlx_pixel_put(game->mlx, game->win, (x) * tile_size + i, y * tile_size + j, 0xFF0000); // Czerwony kolor
-                    }
-                }
-            }
-            else if (game->map[y][x] == '0' || game->map[y][x] == ' ') // Puste miejsce
-            {
-                for (int i = 0; i < tile_size; i++)
-                {
-                    for (int j = 0; j < tile_size; j++)
-                    {
-                        mlx_pixel_put(game->mlx, game->win, (x) * tile_size + i, y * tile_size + j, 0x000000); // Czarny kolor
-                    }
+                    put_pixel(offset_x + x * tile_size + i,
+                              offset_y + y * tile_size + j,
+                              color, game);
                 }
             }
         }
     }
 
-    // Draw the player
+    // Rysowanie gracza na minimapie
+    int player_tile_x = offset_x + (game->player.x / BLOCK) * tile_size;
+    int player_tile_y = offset_y + (game->player.y / BLOCK) * tile_size;
+
     for (int i = 0; i < tile_size; i++)
     {
         for (int j = 0; j < tile_size; j++)
         {
-            mlx_pixel_put(game->mlx, game->win, game->player_x * tile_size + i, game->player_y * tile_size + j, 0x00FF00); // Zielony kolor
+            put_pixel(player_tile_x + i,
+                      player_tile_y + j,
+                      0x00FF00, game); // Zielony kolor dla gracza
         }
     }
 }
-*/
+

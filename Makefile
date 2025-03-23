@@ -6,7 +6,7 @@
 #    By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/22 13:48:19 by ltomasze          #+#    #+#              #
-#    Updated: 2025/03/16 17:04:26 by mbany            ###   ########.fr        #
+#    Updated: 2025/03/22 14:31:41 by mbany            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ src/check_tcm.c \
 src/raycasting.c \
 src/textures.c \
 src/init_game.c\
+src/error.c\
+
 
 
 OBJECTS = $(SOURCES:%.c=%.o)
