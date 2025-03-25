@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:16:49 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/23 16:00:18 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/25 20:12:17 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,27 +125,22 @@ typedef struct s_ray
 # define COLLISION_RADIUS 10
 # define PI 3.14159265359
 
-# define FLOOR 0x2F2F2F
-# define CELING 0x87CEEB
+# define FLOOR 0x009600
+# define CELING 0x000096
 
 
 
-//check_tcm.c
-char *ft_skip_spaces(char *line);
-int ft_is_texture_line(char *line);
-int ft_is_color_line(char *line);
-int ft_is_map_line(char *line);
-int ft_check_tcm(const char *filename);
 
 //main.c
-int	close_game(t_game *game);
-int ft_check_args(int argc, char **argv);
+int		close_game(t_game *game);
+int		close_button(t_game *game);
+int	draw_loop(t_game *game);
+
 
 //kay.c
-int mouse_move(int x, int y, t_game *game);
-int	close_button(t_game *game);
-int	key_down(int keycode, t_game *game);
-int	key_up(int keycode, t_player *player);
+// int mouse_move(int x, int y, t_game *game);
+int		key_down(int keycode, t_game *game);
+int		key_up(int keycode, t_player *player);
 void	rotate_player(t_player *player);
 void	move_player(t_player *player, t_game *game);
 
@@ -155,14 +150,14 @@ char **ft_load_map(const char *filename);
 void draw_map(t_game *game);
 
 //window.c
-void new_window(t_game *game, const char *map_file);
+void 	new_window(t_game *game, const char *map_file);
 void	put_pixel(int x, int y, int color, t_game *game);
 void	clear_image(t_game *game);
 void	draw_floor_ceiling(t_game *game);
-bool touch(float px, float py, t_game *game);
+bool 	touch(float px, float py, t_game *game);
 
 //raycasting.c
-void draw_3d_view(t_game *game);
+void 	draw_3d_view(t_game *game);
 void	draw_column(t_game *game, t_tex *texture, int column, t_line *line);
 float	compute_corrected_dist(t_ray *ray, t_player *player, float ray_angle);
 void	perform_dda(t_ray *ray, t_game *game);
@@ -174,13 +169,13 @@ void	draw_line(t_player *player, t_game *game, float ray_angle, int column);
 
 //textures.c
 //void load_textures(t_game *game);
-int	load_texture(t_game *game, t_tex *tex, char *path); 
-int	load_all_textures(t_game *game);
+int		load_texture(t_game *game, t_tex *tex, char *path); 
+int		load_all_textures(t_game *game);
 t_tex	*choose_texture(t_ray *ray, t_game *game);
 
 //free.c
 // void free_textures(t_game *game);
-void free_map(char **map);
+void 	free_map(char **map);
 void	free_texture(t_game *game, t_tex *texture);
 void    clean_exit(t_game *game);
 void	free_texture_paths(t_game *game);

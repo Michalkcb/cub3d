@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:11:49 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/23 15:03:11 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/25 20:12:39 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int	init_game(t_game *game, char *file)
 	////////////////////////////////////////////////////////
 	if (!parsing(game))
 		return (error(INVALID_MAP, game));
-
-	
 	/////////////////////////////////////////////////////////
 	//valid_map
 	game->mlx = mlx_init();
@@ -72,6 +70,8 @@ int	init_game(t_game *game, char *file)
 
 
 //tmp===================================================
+
+
 
 int	parsing(t_game *data)
 {

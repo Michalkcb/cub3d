@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:40:28 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/23 15:01:25 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/25 19:27:06 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 void	calc_delta_dist(t_ray *ray)
 {
 	if (ray->raydirx == 0)
-		ray->deltadistx = 1e30f;
+		ray->deltadistx = 1e10f;
 	else
 		ray->deltadistx = fabsf(1.0f / ray->raydirx);
 	if (ray->raydiry == 0)
-		ray->deltadisty = 1e30f;
+		ray->deltadisty = 1e10f;
 	else
 		ray->deltadisty = fabsf(1.0f / ray->raydiry);
 }
