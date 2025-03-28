@@ -3,16 +3,37 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+         #
+#    By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/22 13:48:19 by ltomasze          #+#    #+#              #
-#    Updated: 2025/03/25 19:12:52 by mbany            ###   ########.fr        #
+#    Updated: 2025/03/27 12:54:39 by ltomasze         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
-SOURCES = src/get_next_line.c \
-src/main.c \
+NAME = cub3D
+SOURCES = src/get_next_line.c src/main.c \
+src/check/check.c \
+src/check/check_line.c \
+src/check/check_tcm.c \
+src/check/check_tcm1.c \
+src/check/check_only_one_tc.c \
+src/check/check_only_one_tc1.c \
+src/check/check_textures.c \
+src/check/check_textures1.c \
+src/check/check_colours.c \
+src/check/check_colours1.c \
+src/check/check_map_is_last.c \
+src/check/check_map_vertical_integrity.c \
+src/check/check_map_characters.c \
+src/check/check_map_player_count.c \
+src/check/check_map_border.c \
+src/check/check_map_border1.c \
+src/check/check_map_border2.c \
+src/check/check_map_border3.c \
+src/check/check_utils.c \
+src/parse/parse.c \
+src/parse/parse1.c \
+src/parse/parse2.c \
 src/key.c \
 src/map.c \
 src/free.c \
@@ -21,8 +42,6 @@ src/raycasting.c \
 src/textures.c \
 src/init_game.c\
 src/error.c\
-
-
 
 OBJECTS = $(SOURCES:%.c=%.o)
 CC = cc
