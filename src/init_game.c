@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:11:49 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/30 17:58:16 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/30 17:32:39 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,19 @@ void	init_player(t_player *player)
 	game->data = NULL;
 	game->map = NULL;
 	game->copy_map = NULL;
-    game->config.textures[0] = NORTH_TEXTURE_PATH;
-    game->config.textures[1] = SOUTH_TEXTURE_PATH;
-    game->config.textures[2] = WEST_TEXTURE_PATH;
-    game->config.textures[3] = EAST_TEXTURE_PATH;
-    game->n_tex_path = game->config.textures[0];
-    game->s_tex_path = game->config.textures[1];
-    game->w_tex_path = game->config.textures[2];
-    game->e_tex_path = game->config.textures[3];
+	game->n_tex_path = NORTH_TEXTURE_PATH;
+	game->s_tex_path = SOUTH_TEXTURE_PATH;
+	game->w_tex_path = WEST_TEXTURE_PATH;
+	game->e_tex_path = EAST_TEXTURE_PATH;
 	game->n_path = 0;
     game->s_path = 0;
     game->w_path = 0;
     game->e_path = 0;
+	// game.n_tex_path = config.textures[0];
+	// game.s_tex_path = config.textures[1];
+	// game.w_tex_path = config.textures[2];
+	// game.e_tex_path = config.textures[3];
+
 }
 
 int	init_game(t_game *game, char *file)

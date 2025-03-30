@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:42:26 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/30 17:56:28 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/23 14:49:26 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ int	load_texture(t_game *game, t_tex *tex, char *path)
 
 int	load_all_textures(t_game *game)
 {
-    if (!load_texture(game, &game->n_tex, game->config.textures[0]))
-        return (error(INVALID_FILE, game)); // North texture
-    if (!load_texture(game, &game->s_tex, game->config.textures[1]))
-        return (error(INVALID_FILE, game)); // South texture
-    if (!load_texture(game, &game->w_tex, game->config.textures[2]))
-        return (error(INVALID_FILE, game)); // West texture
-    if (!load_texture(game, &game->e_tex, game->config.textures[3]))
-        return (error(INVALID_FILE, game)); // East texture
-    return (1);
+	if (!load_texture(game, &game->n_tex, game->n_tex_path))
+		return (error(INVALID_FILE, game));
+	if (!load_texture(game, &game->s_tex, game->s_tex_path))
+		return (error(INVALID_FILE, game));
+	if (!load_texture(game, &game->w_tex, game->w_tex_path))
+		return (error(INVALID_FILE, game));
+	if (!load_texture(game, &game->e_tex, game->e_tex_path))
+		return (error(INVALID_FILE, game));
+	return (1);
 }
 
 t_tex	*choose_texture(t_ray *ray, t_game *game)
