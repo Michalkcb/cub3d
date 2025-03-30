@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:16:49 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/29 17:06:38 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/30 17:31:20 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,13 @@ typedef struct s_ray
 #define COLLISION_RADIUS 10
 #define PI 3.14159265359
 
-#define FLOOR 0x009600
-#define CELING 0x000096
+// #define FLOOR 0x009600
+// #define CELING 0x000096
+
+#define NORTH_TEXTURE_PATH "./textures/north.xpm"
+#define SOUTH_TEXTURE_PATH "./textures/south.xpm"
+#define WEST_TEXTURE_PATH "./textures/west.xpm"
+#define EAST_TEXTURE_PATH "./textures/east.xpm"
 
 //get_next_line.c
 char	*get_next_line(int fd);
@@ -314,10 +319,10 @@ void	init_game_struct(t_game *game);
 void	init_player(t_player *player);
 int		parsing(t_game *data);
 int		parse_color(char *str);
-int		line_redirection(char *line, int *is_map_started, t_game *data);
+int		line_redirection(char *line, int *is_map_started);
 int		parsing(t_game *data);
 void	free_split(char **split);
-int		line_check(char *line, t_game *data);
+int		line_check(char *line);
 int		create_map(char *line, t_game *data);
 int		texture_identifier(int code, char *line, t_game *game);
 char	*ft_strjoin_gnl(char *buffer, char *new_s);

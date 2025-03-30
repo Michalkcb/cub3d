@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:45:26 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/03/29 15:01:33 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/30 18:19:08 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	close_game(t_game *game)
 {
-	free_texture_paths(game);
-	free_all_textures(game);
+	//free_texture_paths(game);
+	 free_all_textures(game);
 	if (game->map)
 		free_map(game->map);
 	if (game->copy_map)
@@ -85,10 +85,10 @@ int	main(int argc, char **argv)
 		ft_free_config(&config);
 		return (1);
 	}
-	game.n_tex_path = config.textures[0];
-	game.s_tex_path = config.textures[1];
-	game.w_tex_path = config.textures[2];
-	game.e_tex_path = config.textures[3];
+	// game.n_tex_path = config.textures[0];
+	// game.s_tex_path = config.textures[1];
+	// game.w_tex_path = config.textures[2];
+	// game.e_tex_path = config.textures[3];
 	game.color_floor = config.floor_color;
 	game.color_ceiling = config.ceiling_color;
 	game.map = config.map;

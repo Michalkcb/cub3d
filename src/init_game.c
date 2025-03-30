@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:11:49 by mbany             #+#    #+#             */
-/*   Updated: 2025/03/29 17:58:02 by mbany            ###   ########.fr       */
+/*   Updated: 2025/03/30 17:58:16 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	init_player(t_player *player)
 	player->rotate_right = false;
 }
 
-void	init_game_struct(t_game *game)
+	t_config	config;
+	void	init_game_struct(t_game *game)
 {
 	game->mlx = NULL;
 	game->win = NULL;
@@ -40,15 +41,18 @@ void	init_game_struct(t_game *game)
 	game->data = NULL;
 	game->map = NULL;
 	game->copy_map = NULL;
-	game->n_tex_path = NULL;
-	game->s_tex_path = NULL;
-	game->w_tex_path = NULL;
-	game->e_tex_path = NULL;
+    game->config.textures[0] = NORTH_TEXTURE_PATH;
+    game->config.textures[1] = SOUTH_TEXTURE_PATH;
+    game->config.textures[2] = WEST_TEXTURE_PATH;
+    game->config.textures[3] = EAST_TEXTURE_PATH;
+    game->n_tex_path = game->config.textures[0];
+    game->s_tex_path = game->config.textures[1];
+    game->w_tex_path = game->config.textures[2];
+    game->e_tex_path = game->config.textures[3];
 	game->n_path = 0;
     game->s_path = 0;
     game->w_path = 0;
     game->e_path = 0;
-
 }
 
 int	init_game(t_game *game, char *file)
@@ -79,29 +83,29 @@ int	init_game(t_game *game, char *file)
 
 int	parsing(t_game *data)
 {
-	char	*line;
-	int		is_map_started;
+    char	*line;
+    int		is_map_started;
 
-	is_map_started = 0;
-	while (1)
-	{
-		line = get_next_line(data->fd);
-		if (!line)
-			break ;
-		if (!is_map_started)
-		{
-			if (!line_redirection(line, &is_map_started, data))
-				return (0);
-		}
-		if (is_map_started)
-		{
-			create_map(line, data);
-			break ;
-		}
-		if (line)
-			free(line);
-	}
-	return (1);
+    is_map_started = 0;
+    while (1)
+    {
+        line = get_next_line(data->fd);
+        if (!line)
+            break ;
+        if (!is_map_started)
+        {
+            if (!line_redirection(line, &is_map_started))
+                return (0);
+        }
+        if (is_map_started)
+        {
+            create_map(line, data);
+            break ;
+        }
+        if (line)
+            free(line);
+    }
+    return (1);
 }
 
 static int	is_map_line(char *line)
@@ -122,7 +126,7 @@ static int	is_map_line(char *line)
 	return (1);
 }
 
-int	line_redirection(char *line, int *is_map_started, t_game *data)
+int	line_redirection(char *line, int *is_map_started)
 {
 	if (!ft_strcmp(line, "\n"))
 	{
@@ -130,7 +134,7 @@ int	line_redirection(char *line, int *is_map_started, t_game *data)
 		free(line);
 		return (1);
 	}
-	if (!line_check(line, data))
+	if (!line_check(line))
 	{
 		free(line);
 		return (0);
@@ -158,20 +162,12 @@ void	free_split(char **arr)
 
 
 
-int	line_check(char *line, t_game *data)
+int	line_check(char *line)
 {
-	if (!ft_strncmp(line, "NO", 2))
-		return (texture_identifier(1, line, data));
-	else if (!ft_strncmp(line, "SO", 2))
-		return (texture_identifier(2, line, data));
-	else if (!ft_strncmp(line, "WE", 2))
-		return (texture_identifier(3, line, data));
-	else if (!ft_strncmp(line, "EA", 2))
-		return (texture_identifier(4, line, data));
-	else if (!ft_strcmp(line, "\n"))
-		return (0);
-	else
-		return (1);
+    if (!ft_strcmp(line, "\n"))
+        return (0);
+    else
+        return (1);
 }
 
 int	create_map(char *line, t_game *data)
@@ -193,24 +189,6 @@ int	create_map(char *line, t_game *data)
 	return (1);
 }
 
-int	texture_identifier(int code, char *line, t_game *game)
-{
-	char	*path;
-
-	path = tex_path_creator(line);
-	path_counter(code, game);
-	if (!path)
-		return (0);
-	if (code == 1)
-		game->n_tex_path = path;
-	else if (code == 2)
-		game->s_tex_path = path;
-	else if (code == 3)
-		game->w_tex_path = path;
-	else if (code == 4)
-		game->e_tex_path = path;
-	return (1);
-}
 char	*ft_strjoin_gnl(char *buffer, char *new_s)
 {
 	int		i;
@@ -237,53 +215,4 @@ char	*ft_strjoin_gnl(char *buffer, char *new_s)
 		free(buffer);
 	buffer = NULL;
 	return (string);
-}
-
-char	*tex_path_creator(char *line)
-{
-	int		i;
-	int		len;
-	char	*path;
-
-	i = 2;
-	while (line[i] == ' ')
-		i++;
-	path = ft_substr(line, i, ft_strlen(line) - i);
-	if (!path)
-		return (NULL);
-	len = ft_strlen(path);
-	while (len > 0 && (path[len - 1] == '\n' || path[len - 1] == ' '))
-	{
-		path[len - 1] = '\0';
-		len--;
-	}
-	return (path);
-}
-void	path_counter(int code, t_game *data)
-{
-	char	*path;
-
-	if (code == 1)
-	{
-		data->n_path++;
-		path = data->n_tex_path;
-	}
-	else if (code == 2)
-	{
-		data->s_path++;
-		path = data->s_tex_path;
-	}
-	else if (code == 3)
-	{
-		data->w_path++;
-		path = data->w_tex_path;
-	}
-	else if (code == 4)
-	{
-		data->e_path++;
-		path = data->e_tex_path;
-	}
-	if (data->n_path > 1 || data->s_path > 1
-		|| data->w_path > 1 || data->e_path > 1)
-		free(path);
 }
