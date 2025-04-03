@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:11:49 by mbany             #+#    #+#             */
-/*   Updated: 2025/04/01 20:27:09 by mbany            ###   ########.fr       */
+/*   Updated: 2025/04/03 20:13:46 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,21 @@ void	init_game_struct(t_game *game)
 	game->data = NULL;
 	game->map = NULL;
 	game->copy_map = NULL;
-	printf("4.1Address of north texture path: %s\n", game->n_tex_path);
-	game->n_tex_path = NORTH_TEXTURE_PATH;
-	game->s_tex_path = SOUTH_TEXTURE_PATH;
-	game->w_tex_path = WEST_TEXTURE_PATH;
-	game->e_tex_path = EAST_TEXTURE_PATH;
-	printf("1 North texture path: %s\n", game->n_tex_path);
-    printf("1 South texture path: %s\n", game->s_tex_path);
-    printf("1 West texture path: %s\n", game->w_tex_path);
-    printf("1 East texture path: %s\n", game->e_tex_path);
-	// game->n_tex_path = game->config.textures[0];
-    // game->s_tex_path = game->config.textures[1];
-    // game->w_tex_path = game->config.textures[2];
-    // game->e_tex_path = game->config.textures[3];
-
-    printf("2 North texture path: %s\n", game->n_tex_path);
-    printf("2 South texture path: %s\n", game->s_tex_path);
-    printf("2 West texture path: %s\n", game->w_tex_path);
-    printf("2 East texture path: %s\n", game->e_tex_path);
+	printf("4.1 Address of north texture path: %s\n", game->n_tex_path);
+	// game->n_tex_path = NORTH_TEXTURE_PATH;
+	// game->s_tex_path = SOUTH_TEXTURE_PATH;
+	// game->w_tex_path = WEST_TEXTURE_PATH;
+	// game->e_tex_path = EAST_TEXTURE_PATH;
+	
+	game->n_tex_path = game->config.textures[0];
+    game->s_tex_path = game->config.textures[1];
+    game->w_tex_path = game->config.textures[2];
+    game->e_tex_path = game->config.textures[3];
+	
+	printf("4.2 N texture path: %s\n", game->n_tex_path);
+	printf("4.2 S texture path: %s\n", game->s_tex_path);
+	printf("4.2 W texture path: %s\n", game->w_tex_path);
+	printf("4.2 E texture path: %s\n", game->e_tex_path);
 	game->n_path = 0;
     game->s_path = 0;
     game->w_path = 0;
