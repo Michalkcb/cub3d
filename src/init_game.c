@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:11:49 by mbany             #+#    #+#             */
-/*   Updated: 2025/04/05 16:39:41 by mbany            ###   ########.fr       */
+/*   Updated: 2025/04/05 18:54:31 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,22 @@ int	init_game(t_game *game, char *file)
 	init_player(&game->player);
 	game->fd = open(file, O_RDONLY);
 	/////////////////////////////////////////
-	// if (!parsing(game))
-	// 	return (error(INVALID_MAP, game));
-		
+	if (!parsing(game))
+		return (error(INVALID_MAP, game));
+	
+	if (game->map)
+	{
+		printf("3 Map:\n");
+		for (int i = 0; game->map[i] != NULL; i++)
+		{
+			printf("%s\n", game->map[i]);
+		}
+	}
+	else
+	{
+		printf("Error: Map is NULL\n");
+	}
+	
 	/////////////////////////////////////////
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3d");
