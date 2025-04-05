@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:11:49 by mbany             #+#    #+#             */
-/*   Updated: 2025/04/05 18:54:31 by mbany            ###   ########.fr       */
+/*   Updated: 2025/04/05 19:37:39 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_game_struct(t_game *game)
 	game->win = NULL;
 	game->img = NULL;
 	game->data = NULL;
-	game->map = NULL;
+	game->map = game->config.map;
 	game->copy_map = NULL;
 	game->map = game->config.map;
 		
@@ -61,21 +61,9 @@ int	init_game(t_game *game, char *file)
 	init_player(&game->player);
 	game->fd = open(file, O_RDONLY);
 	/////////////////////////////////////////
-	if (!parsing(game))
-		return (error(INVALID_MAP, game));
-	
-	if (game->map)
-	{
-		printf("3 Map:\n");
-		for (int i = 0; game->map[i] != NULL; i++)
-		{
-			printf("%s\n", game->map[i]);
-		}
-	}
-	else
-	{
-		printf("Error: Map is NULL\n");
-	}
+	// if (!parsing(game))
+	// 	return (error(INVALID_MAP, game));
+
 	
 	/////////////////////////////////////////
 	game->mlx = mlx_init();
@@ -94,6 +82,7 @@ int	init_game(t_game *game, char *file)
 
 
 
+/*
 int	parsing(t_game *data)
 {
     char	*line;
@@ -230,3 +219,4 @@ char	*ft_strjoin_gnl(char *buffer, char *new_s)
 	buffer = NULL;
 	return (string);
 }
+	*/

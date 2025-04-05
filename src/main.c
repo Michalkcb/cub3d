@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:45:26 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/04/05 17:10:01 by mbany            ###   ########.fr       */
+/*   Updated: 2025/04/05 19:38:55 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,6 @@ int	main(int argc, char **argv)
 	
 	if (ft_check(argc, argv))
 		return (1);
-	if (game.map)
-		{
-			printf("1 Map:\n");
-			for (int i = 0; game.map[i] != NULL; i++)
-			{
-				printf("%s\n", game.map[i]);
-			}
-		}
-		else
-		{
-			printf("Error: Map is NULL\n");
-		}
 		
 	if (ft_parse(argv[1], &game.config))
 	{
@@ -103,49 +91,24 @@ int	main(int argc, char **argv)
 		
 		return (1);
 	}
-	
-	// printf("1 Address of north texture path: %s\n", game.n_tex_path);
-	// game.n_tex_path = game.config.textures[0];
-	// game.s_tex_path = game.config.textures[1];
-	// game.w_tex_path = game.config.textures[2];
-	// game.e_tex_path = game.config.textures[3];
 	game.color_floor = game.config.floor_color;
 	game.color_ceiling = game.config.ceiling_color;
 	game.map = game.config.map;
-	if (game.map)
-	{
-		printf("2 Map:\n");
-		for (int i = 0; game.map[i] != NULL; i++)
-		{
-			printf("%s\n", game.map[i]);
-		}
-	}
-	else
-	{
-		printf("Error: Map is NULL\n");
-	}
+
+
+	
 	if (!init_game(&game, argv[1]))
 	{
 		printf("Error: Failed to initialize game\n");
 		return (1);
 	}
-	if (game.map)
-	{
-		printf("3 Map:\n");
-		for (int i = 0; game.map[i] != NULL; i++)
-		{
-			printf("%s\n", game.map[i]);
-		}
-	}
-	else
-	{
-		printf("Error: Map is NULL\n");
-	}
-	ft_free_config(&game.config);
+
+	
 	mlx_hook(game.win, 2, 1L << 0, key_down, &game);
 	mlx_hook(game.win, 3, 1L << 1, key_up, &game.player);
 	mlx_hook(game.win, 17, 0, close_button, &game);
 	mlx_loop_hook(game.mlx, draw_loop, &game);
 	mlx_loop(game.mlx);
+	ft_free_config(&game.config);
 	return (0);
 }
