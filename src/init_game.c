@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:11:49 by mbany             #+#    #+#             */
-/*   Updated: 2025/04/05 19:37:39 by mbany            ###   ########.fr       */
+/*   Updated: 2025/04/05 19:52:58 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	init_ray(t_ray *ray, t_player *player, float ray_angle)
 }
 void	init_player(t_player *player)
 {
-	player->x = 820;
-	player->y = 200;
-	player->angle = PI / 2;
+	player->x = 587;
+	player->y = 166;
+	player->angle = PI / 1.8;
 	player->key_up = false;
 	player->key_down = false;
 	player->key_left = false;
